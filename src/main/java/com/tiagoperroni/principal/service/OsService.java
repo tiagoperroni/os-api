@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.tiagoperroni.principal.domain.Cliente;
 import com.tiagoperroni.principal.domain.OS;
 import com.tiagoperroni.principal.domain.Tecnico;
-import com.tiagoperroni.principal.domain.enums.Prioridade;
 import com.tiagoperroni.principal.domain.enums.Status;
 import com.tiagoperroni.principal.dtos.OSDTO;
 import com.tiagoperroni.principal.repositories.OSRepository;
@@ -56,8 +55,8 @@ public class OsService {
 		OS newObj = new OS();
 		newObj.setId(obj.getId());
 		newObj.setObservacoes(obj.getObservacoes());
-		newObj.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
-		newObj.setStatus(Status.toEnum(obj.getStatus()));
+		newObj.setPrioridade(obj.getPrioridade());
+		newObj.setStatus(Status.toEnum(obj.getStatus().getCod()));
 				
 		Tecnico tec = tecnicoService.findById(obj.getTecnico());
 		Cliente cli = clienteService.findById(obj.getCliente());
